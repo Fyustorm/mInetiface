@@ -1,0 +1,35 @@
+{
+  "schemaVersion" : 1,
+  "id" : "minetiface",
+  "version" : "1.0.0",
+  "name" : "mInetiface",
+  "description" : "Lets you control your sextoy device",
+  "authors" : [ "Fyutstorm" ],
+  "contributors" : [ "RainbowVille", "vinceh121"],
+  "contact" : {
+    "homepage" : "https://github.com/Fyustorm/mInetiface",
+    "sources" : "https://github.com/Fyustorm/mInetiface"
+  },  
+  "license" : "AGPL-3.0",
+  "icon" : "assets/minetiface/icon.png",
+  "environment" : "*",
+  "entrypoints" : {
+    "main" : [ "fr.fyustorm.minetiface.fabric.Minetiface" ],
+    "client" : [ ],
+    "server" : [ ],
+    "modmenu": [ "fr.fyustorm.minetiface.config.MinetifaceModMenu" ]
+  },
+  "mixins" : [ "minetiface.mixins.json" ],
+  "custom": {
+    "modmenu": {
+      "badges": []
+    }
+  },
+  "depends" : {
+    "fabricloader" : ">=0.14.9",
+    "fabric": "*",
+    "minecraft": "1.19.2",
+    "java": ">=17",
+    "modmenu": "4.x.x"
+  }
+}
