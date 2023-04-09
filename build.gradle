@@ -1,7 +1,6 @@
 plugins {
 	id 'fabric-loom' version '0.12.54'
 	id 'maven-publish'
-	id 'com.github.johnrengelman.shadow' version '7.1.0'
 }
 
 sourceCompatibility = JavaVersion.VERSION_17
@@ -23,28 +22,55 @@ repositories {
 	}
 }
 
+configurations {
+    runtime {
+        extendsFrom implementation
+    }
+}
+
 dependencies {
 	//to change the versions see the gradle.properties file
 	minecraft "com.mojang:minecraft:${project.minecraft_version}"
+
 	mappings "net.fabricmc:yarn:${project.yarn_mappings}:v2"
 	modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
 	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
 	modImplementation "com.terraformersmc:modmenu:4.0.6"
+	
 	modApi("me.shedaniel.cloth:cloth-config-fabric:${project.cloth_config_version}") {
 		exclude(group: "net.fabricmc.fabric-api")
 	}
 	include "me.shedaniel.cloth:cloth-config-fabric:${project.cloth_config_version}"
-	implementation group: 'io.github.blackspherefollower', name: 'buttplug4j', version: '3.0.67'
+
+    
+	modImplementation "io.github.blackspherefollower:buttplug4j:3.0.67"
+	include "io.github.blackspherefollower:buttplug4j:3.0.67"
+
+	// All transitive dependencies of the buttplug4j. This is not pretty but I didn't find any
+	// other way to add transitive dependencies to the mod JAR
+	include 'jakarta.websocket:jakarta.websocket-api:2.1.0'
+    include 'org.eclipse.jetty.websocket:websocket-javax-client:10.0.14'
+    include 'com.fasterxml.jackson.core:jackson-annotations:2.14.2'
+    include 'com.fasterxml.jackson.core:jackson-databind:2.14.2'	
+	include 'org.eclipse.jetty:jetty-client:10.0.14'
+	include 'org.eclipse.jetty.toolchain:jetty-javax-websocket-api:1.1.2'
+	include 'org.eclipse.jetty.websocket:websocket-javax-common:10.0.14'
+	include 'org.eclipse.jetty.websocket:websocket-core-client:10.0.14'
+	include 'org.eclipse.jetty.websocket:websocket-core-common:10.0.14'
+	include 'org.eclipse.jetty:jetty-xml:10.0.14'
+	include 'org.eclipse.jetty:jetty-http:10.0.14'
+	include 'org.eclipse.jetty:jetty-io:10.0.14'
+	include 'org.eclipse.jetty:jetty-jmx:10.0.14'
+	include 'org.eclipse.jetty:jetty-alpn-client:10.0.14'
+	include 'org.eclipse.jetty:jetty-util:10.0.14'
+	
+	include "com.fasterxml.jackson.core:jackson-databind:2.12.1"
+	include "com.fasterxml.jackson.core:jackson-annotations:2.12.1"
+	include "com.fasterxml.jackson.core:jackson-core:2.12.1"
 }
 
 jar {
 	from "LICENSE"
-	archiveClassifier.set("dev")
-}
-
-shadowJar {
-	configurations = [project.configurations.shadow]
-	archiveClassifier.set("dev")
 }
 
 processResources {
@@ -53,14 +79,6 @@ processResources {
 	filesMatching("fabric.mod.json") {
 		expand "version": project.version
 	}
-	/*from(sourceSets.main.resources.srcDirs) {
-		include "fabric.mod.json"
-		expand "version": project.version
-	}
-
-	from(sourceSets.main.resources.srcDirs) {
-		exclude "fabric.mod.json"
-	}*/
 }
 
 // ensure that the encoding is set to UTF-8, no matter what the system default is
@@ -75,7 +93,7 @@ tasks.withType(JavaCompile) {
 // if it is present.
 // If you remove this task, sources will not be generated.
 task sourcesJar(type: Jar, dependsOn: classes) {
-	classifier = "sources"
+	archiveClassifier = "sources"
 	from sourceSets.main.allSource
 }
 
@@ -99,7 +117,7 @@ publishing {
 			}
 			artifact(sourcesJar) {
 				builtBy remapSourcesJar
-			}
+			}			
 		}
 	}
 
