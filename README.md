@@ -28,7 +28,7 @@ You have the possibility to configure the Intiface server address, the score sys
 4. Next and final step is to download all **JAR** files and put them into the **mods** folder
    1. Download [Fabric API](https://www.curseforge.com/minecraft/mc-mods/fabric-api/files/4438705) and place the jar in **mods** folder
    2. Download [Mod Menu](https://www.curseforge.com/minecraft/mc-mods/modmenu/files/4145207) and place the jar in **mods** folder
-   3. Download [mInetiface]() and place the jar in **mods** folder
+   3. Download [mInetiface](https://github.com/Fyustorm/mInetiface/releases/download/1.19.2/minetiface-1.0.0-1.19.2.jar) and place the jar in **mods** folder
    
 ## How to use
 1. Make sure you have installed the mod and Intiface Central
