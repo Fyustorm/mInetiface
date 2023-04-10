@@ -24,6 +24,7 @@ build
 eclipse
 run
 logs
+remappedSrc
 
 # Files from Forge MDK
 forge*changelog.txt
