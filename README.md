@@ -26,8 +26,8 @@ You have the possibility to configure the Intiface server address, the score sys
    1. Select the **Installations** tab and click the folder icon next to the profile **fabric-loader-xx**
    2. Create **mods** folder if it doesn't exists. Example : **C:\\Users\\<username>\\AppData\\Roaming\\.minecraft\\mods**
 4. Next and final step is to download all **JAR** files and put them into the **mods** folder
-   1. Download [Fabric API](https://www.curseforge.com/minecraft/mc-mods/fabric-api/files/4438705) and place the jar in **mods** folder
-   2. Download [Mod Menu](https://www.curseforge.com/minecraft/mc-mods/modmenu/files/4145207) and place the jar in **mods** folder
+   1. Download [Fabric API](https://www.curseforge.com/minecraft/mc-mods/fabric-api/files/4474468) and place the jar in **mods** folder
+   2. Download [Mod Menu](https://www.curseforge.com/minecraft/mc-mods/modmenu/files/4441645) and place the jar in **mods** folder
    3. Download [mInetiface](https://github.com/Fyustorm/mInetiface/releases/download/1.19.4/minetiface-1.0.0-1.19.4.jar) and place the jar in **mods** folder
    
 ## How to use
