@@ -110,10 +110,10 @@ public class MinetifaceController {
 		if (target instanceof ServerPlayerEntity && target.getUuid().equals(clientId)) {
 			// On hurt
 			masochistPointsCounter.onHurt(source, amount);
-		} else if (source.name.equals("player") && source.getSource() instanceof ServerPlayerEntity) {
+		} else if (source.getName().equals("player") && source.getSource() instanceof ServerPlayerEntity) {
 			ServerPlayerEntity player = (ServerPlayerEntity) source.getSource();
 			playerEventId = player.getUuid();
-		} else if (source.name.equals("arrow") && source.getAttacker() instanceof ServerPlayerEntity) {
+		} else if (source.getName().equals("arrow") && source.getAttacker() instanceof ServerPlayerEntity) {
 			ServerPlayerEntity player = (ServerPlayerEntity) source.getAttacker();
 			playerEventId = player.getUuid();
 		}
