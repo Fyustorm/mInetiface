@@ -3,6 +3,7 @@ package fr.fyustorm.minetiface.intiface;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -17,36 +18,42 @@ import io.github.blackspherefollower.buttplug4j.client.ButtplugClientWSClient;
 import io.github.blackspherefollower.buttplug4j.client.ButtplugDeviceException;
 
 public class ToyController {
+	private static final ToyController instance = new ToyController();
 	private static final Logger LOGGER = LogManager.getLogger();
-	private static final ButtplugClientWSClient client;
-	public static double currentVibrationLevel = 0;
-	private static List<ButtplugClientDevice> devices;
-	private static boolean connected = false;
 
-	private static ExecutorService executor = Executors.newSingleThreadExecutor();
+	private final ButtplugClientWSClient client;
+	private List<ButtplugClientDevice> devices;
+	private boolean connected = false;
+	
 
-	static {
+	public static ToyController instance() {
+		return instance;
+	}
+
+	private ExecutorService executor = Executors.newSingleThreadExecutor();
+
+	private ToyController() {
 		devices = new ArrayList<>();
 		client = new ButtplugClientWSClient("mInetiface");
 	}
 
-	public static boolean isConnected() {
+	public boolean isConnected() {
 		return connected;
 	}
 
-	public static void connectServer() throws URISyntaxException, Exception {
+	public void connectServer() throws URISyntaxException, Exception {
 		LOGGER.info("URL: " + MinetifaceConfig.INSTANCE.serverUrl);
 		client.connect(new URI("ws://" + MinetifaceConfig.INSTANCE.serverUrl + "/buttplug"));
 		connected = true;
 	}
 
-	public static void disconnectServer() {
-		setVibrationLevel(0);
+	public void disconnectServer() {
+		setScalarLevel(0);
 		client.disconnect();
 		connected = false;
 	}
 
-	public static Future<List<ButtplugClientDevice>> scanDevices() throws Exception {
+	public Future<List<ButtplugClientDevice>> scanDevices() throws Exception {
 		client.startScanning();
 
 		return executor.submit(() -> {
@@ -64,15 +71,134 @@ public class ToyController {
 		});
 	}
 
-	public static void setVibrationLevel(double level) {
+	public void setScalarLevel(double level) {
 		try {
 			for (ButtplugClientDevice device : devices) {
-				device.sendScalarVibrateCmd(level);
+				if (device.getScalarVibrateCount() > 0) {
+					device.sendScalarVibrateCmd(level);
+				}
+				if (device.getScalarRotateCount() > 0) {
+					device.sendScalarRotateCmd(level);
+				}
+				if (device.getScalarOscillateCount() > 0) {
+					device.sendScalarOscillateCmd(level);
+				}
 			}
 		} catch (ButtplugDeviceException e) {
 			LOGGER.error("Could not send scalar command", e);
 		}
+	}
 
-		currentVibrationLevel = level;
+	private double currentPosition = 1;
+	private long lastLinearCommandTimestamp = 0;
+	private long lastLinearCommandDuration = 0;
+	private double lastLinearPosition = 1;
+
+	// public void setLinearLevel(double level) {
+
+	// 	long currentTime = new Date().getTime();
+	// 	long timeSinceLastCmd = currentTime - lastLinearCommandTimestamp;
+		
+	// 	if (timeSinceLastCmd < MinetifaceConfig.INSTANCE.minTimeBetweenCmd) {
+	// 		return;
+	// 	}
+
+	// 	long duration;
+	// 	if (timeSinceLastCmd >= lastLinearCommandDuration) {
+	// 		// Last command is completed so we can invert the position
+	// 		lastLinearPosition = currentPosition;
+	// 		currentPosition = currentPosition == 0 ? 1 : 0;
+
+	// 		// Calculating time to move depending on the level (0 min intensity, 1 max intensity)
+	// 		duration = (long) (MinetifaceConfig.INSTANCE.fullMaxTime - (MinetifaceConfig.INSTANCE.fullMaxTime - MinetifaceConfig.INSTANCE.fullMinTime) * level);
+	// 	} else {
+	// 		// Last command is not completed, so we are still aiming the same position
+	// 		// but we are updating the duration (speed)
+
+	// 		// We are trying to compute the real position
+	// 		double percentDone = (double) timeSinceLastCmd / (double) lastLinearCommandDuration;
+	// 		double newPosition = currentPosition == 1 ? lastLinearPosition + percentDone : lastLinearPosition - percentDone;
+	// 		double percentRemaining = currentPosition == 1 ? 1 - newPosition : newPosition;
+
+	// 		duration = (long) ((MinetifaceConfig.INSTANCE.fullMaxTime - (MinetifaceConfig.INSTANCE.fullMaxTime - MinetifaceConfig.INSTANCE.fullMinTime) * level) * percentRemaining);
+	// 		lastLinearPosition = newPosition;
+	// 	}
+
+	// 	lastLinearCommandTimestamp = currentTime;
+	// 	lastLinearCommandDuration = duration;
+
+	// 	try {
+	// 		for (ButtplugClientDevice device : devices) {
+	// 			if (device.getLinearCount() > 0) {
+	// 				device.sendLinearCmd(currentPosition, duration);
+	// 			}
+	// 		}
+	// 	} catch (ButtplugDeviceException e) {
+	// 		LOGGER.error("Could not send linear command", e);
+	// 	}
+	// }
+
+	public void setLinearLevel(double level) {
+		if (level <= 0) {
+			return;
+		}
+		
+		long currentTime = new Date().getTime();
+		long timeSinceLastCmd = currentTime - lastLinearCommandTimestamp;
+		
+		if (timeSinceLastCmd < lastLinearCommandDuration) {
+			return;
+		}
+
+		long duration;
+
+		// Last command is completed so we can invert the position
+		currentPosition = currentPosition == 0 ? 1 : 0;
+
+		// Calculating time to move depending on the level (0 min intensity, 1 max intensity)
+		duration = (long) (MinetifaceConfig.INSTANCE.fullMaxTime - (MinetifaceConfig.INSTANCE.fullMaxTime - MinetifaceConfig.INSTANCE.fullMinTime) * level);
+
+		lastLinearCommandTimestamp = currentTime;
+		lastLinearCommandDuration = duration;
+
+		try {
+			for (ButtplugClientDevice device : devices) {
+				if (device.getLinearCount() > 0) {
+					device.sendLinearCmd(currentPosition, duration);
+				}
+			}
+		} catch (ButtplugDeviceException e) {
+			LOGGER.error("Could not send linear command", e);
+		}
+	}
+
+	// public double getLinearPosition() {
+	// 	long currentTime = new Date().getTime();
+	// 	long timeSinceLastCmd = currentTime - lastLinearCommandTimestamp;
+		
+	// 	double percentDone;
+	// 	if (timeSinceLastCmd > lastLinearCommandDuration) {
+	// 		percentDone = 1;
+	// 	} else {
+	// 		percentDone = (double) timeSinceLastCmd / (double) lastLinearCommandDuration;
+	// 	}
+
+	// 	percentDone = currentPosition == 1 ? (1 - lastLinearPosition) * percentDone : lastLinearPosition * percentDone;
+
+	// 	return currentPosition == 1 ? lastLinearPosition + percentDone : lastLinearPosition - percentDone;
+	// }
+
+	public double getLinearPosition() {
+		long currentTime = new Date().getTime();
+		long timeSinceLastCmd = currentTime - lastLinearCommandTimestamp;
+		
+		double percentDone;
+		if (timeSinceLastCmd > lastLinearCommandDuration) {
+			percentDone = 1;
+		} else {
+			percentDone = (double) timeSinceLastCmd / (double) lastLinearCommandDuration;
+		}
+
+		return currentPosition == 1 ? percentDone : 1 - percentDone;
 	}
 }
