@@ -18,6 +18,7 @@ You have the possibility to configure the Intiface server address, the score sys
 
 
 ## How to install the mod
+Minecraft v1.19.4 only for now. If you want another version support you can open an [issue](https://github.com/Fyustorm/mInetiface/issues/new)
 1. Download and install [Minecraft Launcher](https://www.minecraft.net/en-us/download)
 2. Download Fabric [https://fabricmc.net/use/installer/](https://fabricmc.net/use/installer/)
    1. Run the installer
@@ -28,7 +29,7 @@ You have the possibility to configure the Intiface server address, the score sys
 4. Next and final step is to download all **JAR** files and put them into the **mods** folder
    1. Download [Fabric API](https://www.curseforge.com/minecraft/mc-mods/fabric-api/files/4474468) and place the jar in **mods** folder
    2. Download [Mod Menu](https://www.curseforge.com/minecraft/mc-mods/modmenu/files/4441645) and place the jar in **mods** folder
-   3. Download [mInetiface](https://github.com/Fyustorm/mInetiface/releases/download/1.19.4/minetiface-1.0.0-1.19.4.jar) and place the jar in **mods** folder
+   3. Download [mInetiface](https://github.com/Fyustorm/mInetiface/releases/download/v1.19.4-1.0.0/minetiface-1.1.0-1.19.4.jar) and place the jar in **mods** folder
    
 ## How to use
 1. Make sure you have installed the mod and Intiface Central
