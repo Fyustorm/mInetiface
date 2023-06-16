@@ -1,7 +1,7 @@
 {
   "schemaVersion" : 1,
   "id" : "minetiface",
-  "version" : "1.0.0",
+  "version" : "1.1.0",
   "name" : "mInetiface",
   "description" : "Lets you control your sextoy device",
   "authors" : [ "Fyutstorm" ],
@@ -28,8 +28,8 @@
   "depends" : {
     "fabricloader" : ">=0.14.9",
     "fabric": "*",
-    "minecraft": "1.19.4",
+    "minecraft": "1.19.2",
     "java": ">=17",
-    "modmenu": "6.x.x"
+    "modmenu": "4.x.x"
   }
 }
