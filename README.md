@@ -18,7 +18,27 @@ You have the possibility to configure the Intiface server address, the score sys
 
 
 ## How to install the mod
-Minecraft v1.19.4 only for now. If you want another version support you can open an [issue](https://github.com/Fyustorm/mInetiface/issues/new)
+Supported versions
+   <details>
+     <summary>Minecraft 1.19.2</summary>
+      <a href="https://mediafilez.forgecdn.net/files/3936/24/fabric-api-0.60.0%2B1.19.2.jar">Fabric API JAR</a><br>
+      <a href="https://cdn.modrinth.com/data/mOgUt4GM/versions/V4hnfgRO/modmenu-4.1.2.jar">Mod Menu JAR</a><br>
+      <a href="https://github.com/Fyustorm/mInetiface/releases/download/v1.19.2-1.1.0/minetiface-1.1.0-1.19.2.jar">mInetiface JAR</a>
+   </details>
+   <details>
+     <summary>Minecraft 1.19.4</summary>
+      <a href="https://mediafilez.forgecdn.net/files/4474/468/fabric-api-0.77.0%2B1.19.4.jar">Fabric API JAR</a><br>
+      <a href="https://cdn.modrinth.com/data/mOgUt4GM/versions/CtMNOUcV/modmenu-6.2.3.jar">Mod Menu JAR</a><br>
+      <a href="https://github.com/Fyustorm/mInetiface/releases/download/v1.19.4-1.0.0/minetiface-1.1.0-1.19.4.jar">mInetiface JAR</a>
+   </details>
+   <details>
+     <summary>Minecraft 1.20.1</summary>
+      <a href="https://mediafilez.forgecdn.net/files/4584/441/fabric-api-0.83.1%2B1.20.1.jar">Fabric API JAR</a><br>
+      <a href="https://cdn.modrinth.com/data/mOgUt4GM/versions/RTFDnTKf/modmenu-7.0.1.jar">Mod Menu JAR</a><br>
+      <a href="https://github.com/Fyustorm/mInetiface/releases/download/v1.20.1-1.0.0/minetiface-1.1.0-1.20.1.jar">mInetiface JAR</a>
+   </details>
+   
+If you need another version support you can open an [issue](https://github.com/Fyustorm/mInetiface/issues/new)
 1. Download and install [Minecraft Launcher](https://www.minecraft.net/en-us/download)
 2. Download Fabric [https://fabricmc.net/use/installer/](https://fabricmc.net/use/installer/)
    1. Run the installer
@@ -26,10 +46,8 @@ Minecraft v1.19.4 only for now. If you want another version support you can open
 3. Run the Minecraft Launcher. Select the new profile named **fabric-loader-xxx**
    1. Select the **Installations** tab and click the folder icon next to the profile **fabric-loader-xx**
    2. Create **mods** folder if it doesn't exists. Example : **C:\\Users\\<username>\\AppData\\Roaming\\.minecraft\\mods**
-4. Next and final step is to download all **JAR** files and put them into the **mods** folder
-   1. Download [Fabric API](https://www.curseforge.com/minecraft/mc-mods/fabric-api/files/4474468) and place the jar in **mods** folder
-   2. Download [Mod Menu](https://www.curseforge.com/minecraft/mc-mods/modmenu/files/4441645) and place the jar in **mods** folder
-   3. Download [mInetiface](https://github.com/Fyustorm/mInetiface/releases/download/v1.19.4-1.0.0/minetiface-1.1.0-1.19.4.jar) and place the jar in **mods** folder
+4. Next and final step is to download all three **JAR** files for your Minecraft version and put them into the **mods** folder
+
    
 ## How to use
 1. Make sure you have installed the mod and Intiface Central
