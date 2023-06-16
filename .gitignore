@@ -28,3 +28,6 @@ remappedSrc
 
 # Files from Forge MDK
 forge*changelog.txt
+
+# Don't include forge folder (testing purpose only for now)
+forge

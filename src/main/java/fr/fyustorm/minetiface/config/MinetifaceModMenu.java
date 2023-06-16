@@ -49,7 +49,15 @@ public class MinetifaceModMenu implements ModMenuApi {
 						.setSaveConsumer(i -> config.intensityColor = i)
 						.build())
 				.addEntry(entryBuild
-						.startFloatField(Text.literal("Minimum intensity feedback"),
+						.startLongField(Text.literal("Minimum time between two device commands"),
+								config.minTimeBetweenCmd)
+						.setDefaultValue(25)
+						.setMin(10)
+						.setMax(1000)
+						.setSaveConsumer(i -> config.minTimeBetweenCmd = i)
+						.build())
+				.addEntry(entryBuild
+						.startFloatField(Text.literal("(Scalar) Minimum intensity feedback"),
 								config.minimumFeedback)
 						.setDefaultValue(10)
 						.setMin(0)
@@ -57,12 +65,28 @@ public class MinetifaceModMenu implements ModMenuApi {
 						.setSaveConsumer(i -> config.minimumFeedback = i)
 						.build())
 				.addEntry(entryBuild
-						.startFloatField(Text.literal("Maximum intensity feedback"),
+						.startFloatField(Text.literal("(Scalar) Maximum intensity feedback"),
 								config.maximumFeedback)
 						.setDefaultValue(30)
 						.setMin(0)
 						.setMax(50)
 						.setSaveConsumer(i -> config.maximumFeedback = i)
+						.build())
+				.addEntry(entryBuild
+						.startLongField(Text.literal("(Linear) Minimum time for full thrust in ms"),
+								config.fullMinTime)
+						.setDefaultValue(100)
+						.setMin(50)
+						.setMax(1000000000)
+						.setSaveConsumer(i -> config.fullMinTime = i)
+						.build())
+				.addEntry(entryBuild
+						.startLongField(Text.literal("(Linear) Maximum time for full thrust in ms"),
+								config.fullMaxTime)
+						.setDefaultValue(5000)
+						.setMin(100)
+						.setMax(1000000000)
+						.setSaveConsumer(i -> config.fullMaxTime = i)
 						.build())
 				.addEntry(entryBuild
 						.startFloatField(Text.literal("Maximum score"),
@@ -129,11 +153,21 @@ public class MinetifaceModMenu implements ModMenuApi {
 						.setMin(0)
 						.setMax(10)
 						.setSaveConsumer(i -> config.mineDurationMultiplier = i)
-						.build());
+						.build());						
 
 		for (Map.Entry<String, BlockScoreConfig> entry : config.blocksScore.entrySet()) {
 			mininCategory.addEntry(addBlockEntry(entry.getValue()));
 		}
+
+		mininCategory
+			.addEntry(entryBuild
+				.startFloatField(Text.literal("Every other blocks base score"),
+						config.defaultBlockScore)
+				.setDefaultValue(0)
+				.setMin(0)
+				.setMax(50)
+				.setSaveConsumer(i -> config.defaultBlockScore = i)
+				.build());
 
 		// Masochist
 		ConfigCategory masochistCategory = builder.getOrCreateCategory(Text.literal("Masochist"));

@@ -7,6 +7,7 @@ import java.util.UUID;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import fr.fyustorm.minetiface.config.MinetifaceConfig;
 import net.minecraft.block.BlockState;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.network.ClientPlayerEntity;
@@ -28,8 +29,9 @@ public class MinetifaceController {
 
 	private static final MinetifaceController instance;
 
-	private int playerTick;
-	private int clientTick;
+	private long playerTick;
+	private long clientTick;
+
 	private boolean paused;
 
 	static {
@@ -99,7 +101,11 @@ public class MinetifaceController {
 			abstractPointsCounter.onTick();
 		}
 
-		ToyController.setVibrationLevel(getIntensity());
+		ToyController.instance().setScalarLevel(getIntensity());
+
+		if (getPoints() > 0 || getInstantPoints() > MinetifaceConfig.INSTANCE.minimumFeedback) {
+			ToyController.instance().setLinearLevel(getIntensity());
+		}
 	}
 
 	public void onDamage(DamageSource source, LivingEntity target, float amount) {
@@ -152,7 +158,7 @@ public class MinetifaceController {
 			} else {
 				if (!paused) {
 					paused = true;
-					ToyController.setVibrationLevel(0);
+					ToyController.instance().setScalarLevel(0);
 				}
 			}
 		}

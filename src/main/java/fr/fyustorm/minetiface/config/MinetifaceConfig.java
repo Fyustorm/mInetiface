@@ -30,6 +30,22 @@ public class MinetifaceConfig {
 	public float scoreLostPerTick = 0.05f;
 	public int maximumSecondsKeepScore = 30;
 
+	// Intiface (linear)
+	/**
+	 * Maximum time to go from position 0 to 1 and vice-versa (in ms)
+	 */
+	public long fullMaxTime = 5000;
+
+	/**
+	 * Minimum time to go from position 0 to 1 and vice-versa (in ms)
+	 */
+	public long fullMinTime = 100;
+
+	/**
+	 * Minimum time betwen two commands (in ms)
+	 */
+	public long minTimeBetweenCmd = 25;
+
 	// GUI
 	public boolean showIntensity = true;
 	public int intensityColor = 0xFFAA00AA;
@@ -54,6 +70,7 @@ public class MinetifaceConfig {
 	public float mineDurationMultiplier = 1;
 	public Map<String, BlockScoreConfig> blocksScore;
 	public static Map<String, BlockScoreConfig> defaultBlocks;
+	public float defaultBlockScore = 0;
 
 	// Attack
 	public boolean attackEnabled = true;

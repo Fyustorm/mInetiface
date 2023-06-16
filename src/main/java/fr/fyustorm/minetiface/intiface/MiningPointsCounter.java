@@ -18,11 +18,11 @@ public class MiningPointsCounter extends AbstractPointsCounter {
 		}
 
 		if (blockValue == null) {
-			blockValue = 0.5f;
+			blockValue = MinetifaceConfig.INSTANCE.defaultBlockScore;
 		}
 
 		addSkipDownTick(blockValue * 20 * MinetifaceConfig.INSTANCE.mineDurationMultiplier);
 		addInstantPoints(blockValue * 5 * MinetifaceConfig.INSTANCE.mineInstantPointsMultiplier);
-		addPoints(Math.max(blockValue, 1f) / 10 * MinetifaceConfig.INSTANCE.minePointsMultiplier);
+		addPoints(blockValue / 10 * MinetifaceConfig.INSTANCE.minePointsMultiplier);
 	}
 }

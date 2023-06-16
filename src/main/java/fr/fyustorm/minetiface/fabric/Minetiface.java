@@ -52,12 +52,12 @@ public class Minetiface implements ModInitializer {
 
 	private void commandConnect(CommandContext<FabricClientCommandSource> context) throws CommandSyntaxException {
 		try {
-			if (ToyController.isConnected()) {
+			if (ToyController.instance().isConnected()) {
 				commandScan(context);
 				return;
 			}
 
-			ToyController.connectServer();
+			ToyController.instance().connectServer();
 			context.getSource().sendFeedback(Text.translatable("commands.connect.success"));
 			commandScan(context);
 		} catch (URISyntaxException e) {
@@ -70,7 +70,7 @@ public class Minetiface implements ModInitializer {
 	}
 
 	private void commandDisconnect(CommandContext<FabricClientCommandSource> context) {
-		ToyController.disconnectServer();
+		ToyController.instance().disconnectServer();
 	}
 
 	private void commandScan(CommandContext<FabricClientCommandSource> context) throws CommandSyntaxException {
@@ -78,7 +78,7 @@ public class Minetiface implements ModInitializer {
 			context.getSource().sendFeedback(Text.translatable("commands.connect.scan"));
 			List<ButtplugClientDevice> devices;
 			try {
-				devices = ToyController.scanDevices().get();
+				devices = ToyController.instance().scanDevices().get();
 
 				if (devices.isEmpty()) {
 					context.getSource().sendFeedback(Text.translatable("commands.connect.no_device"));
