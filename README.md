@@ -35,7 +35,7 @@ Supported versions
      <summary>Minecraft 1.20.1</summary>
       <a href="https://mediafilez.forgecdn.net/files/4584/441/fabric-api-0.83.1%2B1.20.1.jar">Fabric API JAR</a><br>
       <a href="https://cdn.modrinth.com/data/mOgUt4GM/versions/RTFDnTKf/modmenu-7.0.1.jar">Mod Menu JAR</a><br>
-      <a href="https://github.com/Fyustorm/mInetiface/releases/download/v1.20.1-1.0.0/minetiface-1.1.0-1.20.1.jar">mInetiface JAR</a>
+      <a href="https://github.com/Fyustorm/mInetiface/releases/download/v1.20.1-1.1.0/minetiface-1.1.0-1.20.1.jar">mInetiface JAR</a>
    </details>
    
 If you need another version support you can open an [issue](https://github.com/Fyustorm/mInetiface/issues/new)
