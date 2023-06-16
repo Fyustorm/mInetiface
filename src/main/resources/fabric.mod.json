@@ -28,8 +28,8 @@
   "depends" : {
     "fabricloader" : ">=0.14.9",
     "fabric": "*",
-    "minecraft": "1.19.2",
+    "minecraft": "1.20.1",
     "java": ">=17",
-    "modmenu": "4.x.x"
+    "modmenu": "7.x.x"
   }
 }
