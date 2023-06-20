@@ -1,0 +1,17 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "fr.fyustorm.minetiface.mixin",
+  "compatibilityLevel": "JAVA_17",
+  "mixins": [
+    "LivingEntityMixins"
+  ],
+  "client": [
+    "ClientPlayerEntityMixins",
+    "ClientPlayerInteractionManagerMixins",
+    "MinecraftClientMixins"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

@@ -1,0 +1,154 @@
+buildscript {
+    repositories {
+        maven { url = 'https://files.minecraftforge.net/maven' }
+        jcenter()
+        mavenCentral()
+    }
+    dependencies {
+        classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '5.1.+', changing: true
+    }
+}
+
+plugins {
+    id 'com.github.johnrengelman.shadow' version '7.1.2'
+}
+
+apply plugin: 'net.minecraftforge.gradle'
+
+apply plugin: 'eclipse'
+apply plugin: 'maven-publish'
+
+tasks.register("prepareKotlinBuildScriptModel"){}
+tasks.register("ideaSyncTask"){}
+
+version = mod_version
+group = mod_group
+archivesBaseName = 'minetiface-forge_' + minecraft_version
+
+java.toolchain.languageVersion = JavaLanguageVersion.of(17)
+
+println('Java: ' + System.getProperty('java.version') + ' JVM: ' + System.getProperty('java.vm.version') + '(' + System.getProperty('java.vendor') + ') Arch: ' + System.getProperty('os.arch'))
+minecraft {
+    mappings channel: 'official', version: minecraft_version
+
+    runs {
+        client {
+            jvmArgs = ["--add-opens", "java.base/jdk.internal.misc=ALL-UNNAMED", "-Dio.netty.tryReflectionSetAccessible=true"]
+            workingDirectory project.file('run')
+
+            property 'forge.logging.markers', 'SCAN,REGISTRIES,REGISTRYDUMP'
+            property 'forge.logging.console.level', 'debug'
+
+            mods {
+                minegasm {
+                    source sourceSets.main
+                }
+            }
+        }
+
+        server {
+            workingDirectory project.file('run')
+
+            property 'forge.logging.markers', 'SCAN,REGISTRIES,REGISTRYDUMP'
+            property 'forge.logging.console.level', 'debug'
+
+            mods {
+                minegasm {
+                    source sourceSets.main
+                }
+            }
+        }
+
+        data {
+            workingDirectory project.file('run')
+
+            property 'forge.logging.markers', 'SCAN,REGISTRIES,REGISTRYDUMP'
+            property 'forge.logging.console.level', 'debug'
+
+            args '--mod', 'minegasm', '--all', '--output', file('src/generated/resources/'), '--existing', file('src/main/resources/')
+
+            mods {
+                minegasm {
+                    source sourceSets.main
+                }
+            }
+        }
+    }
+}
+
+sourceSets.main.resources { srcDir 'src/generated/resources' }
+
+repositories {
+    mavenCentral()
+}
+configurations {
+    shade
+    implementation.extendsFrom shade
+}
+
+dependencies {
+    minecraft "net.minecraftforge:forge:${minecraft_version}-${forgeVer}"
+    shade project(':commons')
+}
+
+// Fix the classpath the right way and once and for all
+afterEvaluate {
+    // Collect deps in runtimeClasspath but NOT in minecraft
+    def deps = (configurations.runtimeClasspath - configurations.minecraft).join(';')
+    // Add deps to classpath
+    minecraft.runs.each { run ->
+        run.token 'minecraft_classpath', deps
+    }
+}
+
+jar {
+    archiveClassifier = 'slim'
+    manifest {
+        attributes([
+                "Specification-Title"     : "minetiface",
+                "Specification-Vendor"    : "fyustorm",
+                "Specification-Version"   : "1", // We are version 1 of ourselves
+                "Implementation-Title"    : project.name,
+                "Implementation-Version"  : project.jar.archiveVersion,
+                "Implementation-Vendor"   : "fyustorm",
+                "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ")
+        ])
+    }
+}
+
+shadowJar {
+    dependencies {
+        include(dependency('com.fasterxml.jackson.core:.*:.*'))
+        include(dependency('io.github.blackspherefollower:.*:.*'))
+        include(dependency('org.eclipse.jetty.*:.*:.*'))
+        //include(dependency('jakarta.websocket:.*:.*'))
+        //include(dependency('javax.websocket:.*:.*'))
+        include(project(':commons'))
+
+        relocate 'com.fasterxml', 'com.therainbowville.repack.com.fasterxml'
+        relocate 'io.github.blackspherefollower', 'com.therainbowville.repack.io.github.blackspherefollower'
+        relocate 'org.eclipse.jetty', 'com.therainbowville.repack.org.eclipse.jetty'
+        relocate 'javax.websocket', 'com.therainbowville.repack.javax.websocket'
+        relocate 'jakarta.websocket', 'com.therainbowville.repack.javax.websocket'
+        relocate 'javax.servlet', 'com.therainbowville.repack.javax.servlet'
+
+        //classifier "${mcVer}-Forge-${forgeVer}"
+    }
+    archiveClassifier.set('')
+    configurations = [project.configurations.shade]
+    mergeServiceFiles()
+    finalizedBy 'reobfShadowJar'
+}
+assemble.dependsOn shadowJar
+
+reobf {
+    shadowJar {}
+}
+
+jar.finalizedBy('reobfJar')
+
+tasks.withType(JavaCompile).configureEach {
+    options.encoding = 'UTF-8' // Use the UTF-8 charset for Java compilation
+}
+
+shadowJar.dependsOn shadowJar.configurations

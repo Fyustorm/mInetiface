@@ -1,0 +1,11 @@
+{
+  "commands.connect.success": "Connected to Intiface server successfully",
+  "commands.connect.invalid_address": "Invalid Intiface server address : %s",
+  "commands.connect.error": "Unable to connect to Intiface server",
+  "commands.connect.scan": "Scanning devices ...",
+  "commands.connect.no_device": "Could not find device, use /minetiface-connect to retry",
+  "commands.connect.devices": "Found %d device(s) : %s",
+  "commands.connect.add_more": "Use /minetiface-connect if you want to add more devices",
+  "commands.connect.scan_failed": "Error while scanning devices : %s",
+  "commands.disconnected": "Disconnected from server"
+}

@@ -1,0 +1,24 @@
+modLoader="javafml"
+loaderVersion="[40,)"
+license="GNU Affero General Public License v3.0"
+issueTrackerURL="https://github.com/Fyustorm/mInetiface/issues"
+[[mods]]
+modId="minetiface"
+version="2.0.0"
+displayName="mInetiface"
+displayURL="https://github.com/Fyustorm/mInetiface/"
+logoFile="minetiface.png"
+authors="Fyustorm"
+description="Just a simple mod to bring some gasm into Minecraft. ;)"
+[[dependencies.minetiface]]
+    modId="forge"
+    mandatory=true
+    versionRange="[40,)"
+    ordering="NONE"
+    side="BOTH"
+[[dependencies.minetiface]]
+    modId="minecraft"
+    mandatory=true
+    versionRange="[1.18,1.19)"
+    ordering="NONE"
+    side="BOTH"
