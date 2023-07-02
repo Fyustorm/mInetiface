@@ -87,7 +87,7 @@ configurations {
 }
 
 dependencies {
-    minecraft "net.minecraftforge:forge:${minecraft_version}-${forgeVer}"
+    minecraft "net.minecraftforge:forge:${minecraft_version}-${forge_version}"
     shade project(':commons')
 }
 

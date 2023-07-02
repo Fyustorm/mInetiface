@@ -78,10 +78,11 @@ Changes to the file are automatically applied. You don't need to reload your gam
 <details>
     <summary>Fabric versions</summary>
     <details>
-    <details>
      <summary>Minecraft 1.18.2</summary>
-      Coming soon
+      <a href="https://mediafilez.forgecdn.net/files/4438/686/fabric-api-0.76.0%2B1.18.2.jar">Fabric API JAR</a><br>
+      <a href="https://github.com/Fyustorm/mInetiface/releases/download/v1.18.2-2.0.0/minetiface-fabric_1.18.2-2.0.0.jar">mInetiface JAR</a>
     </details>
+    <details>
      <summary>Minecraft 1.19.2</summary>
       <a href="https://mediafilez.forgecdn.net/files/3936/24/fabric-api-0.60.0%2B1.19.2.jar">Fabric API JAR</a><br>
       <a href="https://cdn.modrinth.com/data/mOgUt4GM/versions/V4hnfgRO/modmenu-4.1.2.jar">Mod Menu JAR</a><br>
@@ -114,7 +115,11 @@ Changes to the file are automatically applied. You don't need to reload your gam
     <summary>Forge versions</summary>
     <details>
      <summary>Minecraft 1.18.2</summary>
-      Coming soon
+      <a href="https://github.com/Fyustorm/mInetiface/releases/download/v1.18.2-2.0.0/minetiface-forge_1.18.2-2.0.0.jar">mInetiface JAR</a>
+    </details>
+    <details>
+     <summary>Minecraft 1.19.2</summary>
+      <a href="https://github.com/Fyustorm/mInetiface/releases/download/v1.19.2-2.0.0/minetiface-forge_1.19.2-2.0.0.jar">mInetiface JAR</a>
     </details>
 
 1. Download the **JAR** file for your Minecraft version and put it into your **mods** folder

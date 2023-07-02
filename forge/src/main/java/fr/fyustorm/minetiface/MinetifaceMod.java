@@ -15,7 +15,7 @@ import java.nio.file.Path;
 @Mod(MinetifaceMod.MOD_ID)
 public class MinetifaceMod
 {
-    public static final String MOD_ID = "assets/minetiface";
+    public static final String MOD_ID = "minetiface";
 
     private static final Logger LOGGER = LoggerFactory.getLogger(MinetifaceMod.class);
 

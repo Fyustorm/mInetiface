@@ -10,7 +10,7 @@ import net.minecraftforge.event.entity.living.LivingDamageEvent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.event.entity.player.PlayerXpEvent;
-import net.minecraftforge.event.world.BlockEvent;
+import net.minecraftforge.event.level.BlockEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import org.slf4j.Logger;
@@ -74,7 +74,7 @@ public class ClientEventHandler {
 
     @SubscribeEvent
     public static void onHurt(LivingHurtEvent event) {
-        Entity entity = event.getEntityLiving();
+        Entity entity = event.getEntity();
         if (entity instanceof Player player) {
             UUID entityId = player.getGameProfile().getId();
             if (Minecraft.getInstance().player == null) {
@@ -91,7 +91,7 @@ public class ClientEventHandler {
 
     @SubscribeEvent
     public static void onDeath(LivingDeathEvent event) {
-        Entity entity = event.getEntityLiving();
+        Entity entity = event.getEntity();
         if (entity instanceof Player player) {
             UUID entityId = player.getGameProfile().getId();
             if (Minecraft.getInstance().player == null) {
@@ -125,18 +125,19 @@ public class ClientEventHandler {
 
     @SubscribeEvent
     public static void onXpChange(PlayerXpEvent.XpChange event) {
-        UUID eventPlayer = event.getPlayer().getGameProfile().getId();
         if (Minecraft.getInstance().player == null) {
             return;
         }
+
+        Player eventPlayer = event.getEntity();
+        UUID eventPlayerId = event.getEntity().getGameProfile().getId();
         UUID playerId = Minecraft.getInstance().player.getUUID();
 
-        if (!eventPlayer.equals(playerId)) {
+        if (!eventPlayerId.equals(playerId)) {
             return;
         }
 
-        Player player = event.getPlayer();
-        MinetifaceController.getInstance().onXpChange(player.experienceProgress, player.totalExperience, event.getAmount());
+        MinetifaceController.getInstance().onXpChange(eventPlayer.experienceProgress, eventPlayer.totalExperience, event.getAmount());
     }
 }
 

@@ -2,6 +2,7 @@ package fr.fyustorm.minetiface.common;
 
 import com.mojang.brigadier.Command;
 import com.mojang.brigadier.CommandDispatcher;
+import com.mojang.brigadier.LiteralMessage;
 import com.mojang.brigadier.builder.LiteralArgumentBuilder;
 import com.mojang.brigadier.context.CommandContext;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
@@ -10,9 +11,11 @@ import fr.fyustorm.minetiface.MinetifaceMod;
 import fr.fyustorm.minetiface.commons.config.MinetifaceConfig;
 import fr.fyustorm.minetiface.commons.intiface.ToyController;
 import io.github.blackspherefollower.buttplug4j.client.ButtplugClientDevice;
+import net.minecraft.client.resources.language.I18n;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.commands.Commands;
-import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraft.network.chat.MutableComponent;
+import net.minecraft.network.chat.contents.TranslatableContents;
 import net.minecraft.world.entity.Entity;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -67,11 +70,10 @@ public class MinetifaceCommand {
             sendMessage(context, "commands.connect.success");
             commandScan(context);
         } catch (URISyntaxException e) {
-            throw new SimpleCommandExceptionType(
-                    new TranslatableComponent("commands.connect.invalid_address", MinetifaceConfig.INSTANCE.serverUrl))
+            throw new SimpleCommandExceptionType(new LiteralMessage(I18n.get("commands.connect.invalid_address", MinetifaceConfig.INSTANCE.serverUrl)))
                     .create();
         } catch (Exception e) {
-            throw new SimpleCommandExceptionType(new TranslatableComponent("commands.connect.error")).create();
+            throw new SimpleCommandExceptionType(new LiteralMessage(I18n.get("commands.connect.error"))).create();
         }
     }
 
@@ -80,7 +82,6 @@ public class MinetifaceCommand {
         ToyController.instance().disconnectServer();
         sendMessage(context, "commands.disconnected");
     }
-
 
 
     private static void commandScan(CommandContext<CommandSourceStack> context) {
@@ -99,13 +100,15 @@ public class MinetifaceCommand {
 
                 String devicesStr = ToyController.instance().getDevicesString();
 
-                sendMessage(context, new TranslatableComponent("commands.connect.devices", devices.size(), devicesStr));
+                TranslatableContents content = new TranslatableContents("commands.connect.devices", devices.size(), devicesStr);
+                sendMessage(context, content);
 
                 sendMessage(context, "commands.connect.add_more");
             } catch (Exception e) {
                 LOGGER.error("Error while scanning devices", e);
                 try {
-                    sendMessage(context, new TranslatableComponent("commands.connect.scan_failed", e.getMessage()));
+                    TranslatableContents content = new TranslatableContents("commands.connect.scan_failed", e.getMessage());
+                    sendMessage(context, content);
                 } catch (CommandSyntaxException ex) {
                     LOGGER.error("Error while sending feedback error", e);
                 }
@@ -113,17 +116,18 @@ public class MinetifaceCommand {
         });
     }
 
-    private static void sendMessage(CommandContext<CommandSourceStack> commandContext, TranslatableComponent finalText) throws CommandSyntaxException {
+    private static void sendMessage(CommandContext<CommandSourceStack> commandContext, TranslatableContents content) throws CommandSyntaxException {
         Entity entity = commandContext.getSource().getEntity();
         if (entity == null) {
             return;
         }
 
-        commandContext.getSource().getPlayerOrException().sendMessage(finalText, entity.getUUID());
+        MutableComponent component = content.resolve(commandContext.getSource(), entity, 1);
+        commandContext.getSource().getPlayerOrException().sendSystemMessage(component);
     }
 
     private static void sendMessage(CommandContext<CommandSourceStack> commandContext, String translationKey) throws CommandSyntaxException {
-        TranslatableComponent finalText = new TranslatableComponent(translationKey);
-        sendMessage(commandContext, finalText);
+        TranslatableContents content = new TranslatableContents(translationKey);
+        sendMessage(commandContext, content);
     }
 }
