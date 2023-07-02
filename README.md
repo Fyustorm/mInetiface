@@ -117,6 +117,10 @@ Changes to the file are automatically applied. You don't need to reload your gam
      <summary>Minecraft 1.18.2</summary>
       <a href="https://github.com/Fyustorm/mInetiface/releases/download/v1.18.2-2.0.0/minetiface-forge_1.18.2-2.0.0.jar">mInetiface JAR</a>
     </details>
+    <details>
+     <summary>Minecraft 1.19.2</summary>
+      <a href="https://github.com/Fyustorm/mInetiface/releases/download/v1.19.2-2.0.0/minetiface-forge_1.19.2-2.0.0.jar">mInetiface JAR</a>
+    </details>
 
 1. Download the **JAR** file for your Minecraft version and put it into your **mods** folder
 </details>
