@@ -78,6 +78,10 @@ Changes to the file are automatically applied. You don't need to reload your gam
 <details>
     <summary>Fabric versions</summary>
     <details>
+    <details>
+     <summary>Minecraft 1.18.2</summary>
+      Coming soon
+    </details>
      <summary>Minecraft 1.19.2</summary>
       <a href="https://mediafilez.forgecdn.net/files/3936/24/fabric-api-0.60.0%2B1.19.2.jar">Fabric API JAR</a><br>
       <a href="https://cdn.modrinth.com/data/mOgUt4GM/versions/V4hnfgRO/modmenu-4.1.2.jar">Mod Menu JAR</a><br>
@@ -103,14 +107,14 @@ Changes to the file are automatically applied. You don't need to reload your gam
       2. Run the Minecraft Launcher. Select the new profile named **fabric-loader-xxx**
          1. Select the **Installations** tab and click the folder icon next to the profile **fabric-loader-xx**
          2. Create **mods** folder if it doesn't exists. Example : **C:\\Users\\<username>\\AppData\\Roaming\\.minecraft\\mods**
-3. Next and final step is to download all three **JAR** files for your Minecraft version and put them into the **mods** folder
+3. Next and final step is to download all **JAR** files listed above for your Minecraft version and put them into the **mods** folder
 </details>
 
 <details>
     <summary>Forge versions</summary>
     <details>
-     <summary>Minecraft 1.18.2</summary>      
-      <a href="#">mInetiface JAR</a>
+     <summary>Minecraft 1.18.2</summary>
+      Coming soon
     </details>
 
 1. Download the **JAR** file for your Minecraft version and put it into your **mods** folder
