@@ -132,6 +132,11 @@ public class MinetifaceController {
 		miningPointsCounter.onBreak(blockId);
 	}
 
+	public void onHarvest(float destroySpeed, String blockId) {
+		LOGGER.info("Block harvest {} Speed {}", blockId, destroySpeed);
+		miningPointsCounter.onHarvest(destroySpeed, blockId);
+	}
+
 	public void onClientTick() {
 		// Handle when game is paused
 		if (playerTick >= 0) {

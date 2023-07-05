@@ -8,10 +8,11 @@ import fr.fyustorm.minetiface.commons.config.MinetifaceConfig;
 import fr.fyustorm.minetiface.commons.intiface.ToyController;
 import io.github.blackspherefollower.buttplug4j.client.ButtplugClientDevice;
 import net.fabricmc.api.ModInitializer;
-import net.fabricmc.fabric.api.client.command.v1.ClientCommandManager;
-import net.fabricmc.fabric.api.client.command.v1.FabricClientCommandSource;
+import net.fabricmc.fabric.api.client.command.v2.ClientCommandManager;
+import net.fabricmc.fabric.api.client.command.v2.ClientCommandRegistrationCallback;
+import net.fabricmc.fabric.api.client.command.v2.FabricClientCommandSource;
 import net.fabricmc.loader.api.FabricLoader;
-import net.minecraft.text.TranslatableText;
+import net.minecraft.text.Text;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -30,20 +31,19 @@ public class MinetifaceMod implements ModInitializer {
 
         MinetifaceConfig.loadConfig(FabricLoader.getInstance().getConfigDir());
 
-        ClientCommandManager.DISPATCHER.register(ClientCommandManager
-                .literal("minetiface-connect")
-                .executes(o -> {
-                    commandConnect(o);
-                    return Command.SINGLE_SUCCESS;
-                }));
+        ClientCommandRegistrationCallback.EVENT.register((dispatcher, registryAccess) -> {
+            dispatcher.register(ClientCommandManager.literal("minetiface-connect").executes(o -> {
+                commandConnect(o);
+                return Command.SINGLE_SUCCESS;
+            }));
+        });
 
-
-		ClientCommandManager.DISPATCHER.register(ClientCommandManager
-				.literal("minetiface-disconnect")
-				.executes(o -> {
-					commandDisconnect(o);
-					return Command.SINGLE_SUCCESS;
-				}));
+        ClientCommandRegistrationCallback.EVENT.register((dispatcher, registryAccess) -> {
+            dispatcher.register(ClientCommandManager.literal("minetiface-disconnect").executes(o -> {
+                commandDisconnect(o);
+                return Command.SINGLE_SUCCESS;
+            }));
+        });
     }
 
     private void commandConnect(CommandContext<FabricClientCommandSource> context) throws CommandSyntaxException {
@@ -55,46 +55,46 @@ public class MinetifaceMod implements ModInitializer {
             }
 
             ToyController.instance().connectServer();
-            context.getSource().sendFeedback(new TranslatableText("commands.connect.success"));
+            context.getSource().sendFeedback(Text.translatable("commands.connect.success"));
             commandScan(context);
         } catch (URISyntaxException e) {
             throw new SimpleCommandExceptionType(
-					new TranslatableText("commands.connect.invalid_address", MinetifaceConfig.INSTANCE.serverUrl))
+					Text.translatable("commands.connect.invalid_address", MinetifaceConfig.INSTANCE.serverUrl))
                     .create();
         } catch (Exception e) {
-            throw new SimpleCommandExceptionType(new TranslatableText("commands.connect.error")).create();
+            throw new SimpleCommandExceptionType(Text.translatable("commands.connect.error")).create();
         }
     }
 
     private void commandDisconnect(CommandContext<FabricClientCommandSource> context) {
         LOGGER.info("Disconnect command");
         ToyController.instance().disconnectServer();
-		context.getSource().sendFeedback(new TranslatableText("commands.disconnected"));
+		context.getSource().sendFeedback(Text.translatable("commands.disconnected"));
     }
 
     private void commandScan(CommandContext<FabricClientCommandSource> context) throws CommandSyntaxException {
         executor.submit(() -> {
             LOGGER.info("Scanning devices");
-            context.getSource().sendFeedback(new TranslatableText("commands.connect.scan"));
+            context.getSource().sendFeedback(Text.translatable("commands.connect.scan"));
             List<ButtplugClientDevice> devices;
             try {
                 devices = ToyController.instance().scanDevices().get();
 
                 if (devices.isEmpty()) {
-                    context.getSource().sendFeedback(new TranslatableText("commands.connect.no_device"));
+                    context.getSource().sendFeedback(Text.translatable("commands.connect.no_device"));
                     return;
                 }
 
                 String devicesStr = ToyController.instance().getDevicesString();
 
                 context.getSource()
-                        .sendFeedback(new TranslatableText("commands.connect.devices", devices.size(), devicesStr));
+                        .sendFeedback(Text.translatable("commands.connect.devices", devices.size(), devicesStr));
 
                 context.getSource()
-                        .sendFeedback(new TranslatableText("commands.connect.add_more"));
+                        .sendFeedback(Text.translatable("commands.connect.add_more"));
             } catch (Exception e) {
                 LOGGER.error("Error while scanning devices", e);
-                context.getSource().sendFeedback(new TranslatableText("commands.connect.scan_failed", e.getMessage()));
+                context.getSource().sendFeedback(Text.translatable("commands.connect.scan_failed", e.getMessage()));
             }
         });
     }

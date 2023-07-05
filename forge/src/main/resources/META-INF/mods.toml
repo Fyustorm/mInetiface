@@ -10,15 +10,16 @@ displayURL="https://github.com/Fyustorm/mInetiface/"
 logoFile="minetiface.png"
 authors="Fyustorm"
 description="Just a simple mod to bring some gasm into Minecraft. ;)"
+displayTest="IGNORE_ALL_VERSION"
 [[dependencies.minetiface]]
     modId="forge"
     mandatory=true
     versionRange="[40,)"
     ordering="NONE"
-    side="BOTH"
+    side="CLIENT"
 [[dependencies.minetiface]]
     modId="minecraft"
     mandatory=true
     versionRange="[1.19,1.20)"
     ordering="NONE"
-    side="BOTH"
+    side="CLIENT"

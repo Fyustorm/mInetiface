@@ -1,9 +1,10 @@
 package fr.fyustorm.minetiface;
 
-import fr.fyustorm.minetiface.common.StartupCommon;
 import fr.fyustorm.minetiface.commons.config.MinetifaceConfig;
+import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
+import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.fml.loading.FMLPaths;
@@ -25,8 +26,12 @@ public class MinetifaceMod
         Path configPath = FMLPaths.CONFIGDIR.get();
         MinetifaceConfig.loadConfig(configPath);
 
+
         final IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
-        modEventBus.register(StartupCommon.class);
+        final ClientSideOnlyModEventRegistrar clientSideOnlyModEventRegistrar = new ClientSideOnlyModEventRegistrar(modEventBus);
+        DistExecutor.safeRunWhenOn(Dist.CLIENT, () -> clientSideOnlyModEventRegistrar::registerClientOnlyEvents);
+
+        //modEventBus.register(StartupCommon.class);
 
         LOGGER.info("Minetiface init");
     }

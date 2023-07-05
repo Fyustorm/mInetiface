@@ -73,6 +73,7 @@ public class MinetifaceCommand {
             throw new SimpleCommandExceptionType(new LiteralMessage(I18n.get("commands.connect.invalid_address", MinetifaceConfig.INSTANCE.serverUrl)))
                     .create();
         } catch (Exception e) {
+            LOGGER.error("Command connect error", e);
             throw new SimpleCommandExceptionType(new LiteralMessage(I18n.get("commands.connect.error"))).create();
         }
     }
@@ -123,7 +124,7 @@ public class MinetifaceCommand {
         }
 
         MutableComponent component = content.resolve(commandContext.getSource(), entity, 1);
-        commandContext.getSource().getPlayerOrException().sendSystemMessage(component);
+        commandContext.getSource().sendSuccess(component, false);
     }
 
     private static void sendMessage(CommandContext<CommandSourceStack> commandContext, String translationKey) throws CommandSyntaxException {

@@ -78,21 +78,21 @@ public class MinetifaceConfig {
         MAPPER.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
 
         defaultBlocks = new HashMap<>();
-        defaultBlocks.put("block.minecraft.coal_ore", new BlockScoreConfig("block.minecraft.coal_ore", "Coal Ore", 5f));
+        defaultBlocks.put("block.minecraft.coal_ore", new BlockScoreConfig("block.minecraft.coal_ore", "Coal Ore", 4f));
         defaultBlocks.put("block.minecraft.iron_ore", new BlockScoreConfig("block.minecraft.iron_ore", "Iron Ore", 5f));
-        defaultBlocks.put("block.minecraft.deepslate_iron_ore", new BlockScoreConfig("block.minecraft.deepslate_iron_ore", "Deepslate Iron Ore", 10f));
-        defaultBlocks.put("block.minecraft.copper_ore", new BlockScoreConfig("block.minecraft.copper_ore", "Copper Ore", 5f));
+        defaultBlocks.put("block.minecraft.deepslate_iron_ore", new BlockScoreConfig("block.minecraft.deepslate_iron_ore", "Deepslate Iron Ore", 6f));
+        defaultBlocks.put("block.minecraft.copper_ore", new BlockScoreConfig("block.minecraft.copper_ore", "Copper Ore", 4f));
         defaultBlocks.put("block.minecraft.deepslate_copper_ore", new BlockScoreConfig("block.minecraft.deepslate_copper_ore", "Deepslate Copper Ore", 10f));
-        defaultBlocks.put("block.minecraft.redstone_ore", new BlockScoreConfig("block.minecraft.redstone_ore", "Redstone Ore", 10f));
-        defaultBlocks.put("block.minecraft.deepslate_redstone_ore", new BlockScoreConfig("block.minecraft.deepslate_redstone_ore", "Deepslate Redstone Ore", 20f));
-        defaultBlocks.put("block.minecraft.lapis_ore", new BlockScoreConfig("block.minecraft.lapis_ore", "Lapis Ore", 20f));
-        defaultBlocks.put("block.minecraft.deepslate_lapis_ore", new BlockScoreConfig("block.minecraft.deepslate_lapis_ore", "Deepslate Lapis Ore", 30f));
-        defaultBlocks.put("block.minecraft.gold_ore", new BlockScoreConfig("block.minecraft.gold_ore", "Gold Ore", 30f));
-        defaultBlocks.put("block.minecraft.deepslate_gold_ore", new BlockScoreConfig("block.minecraft.deepslate_gold_ore", "Deepslate Gold Ore", 50f));
-        defaultBlocks.put("block.minecraft.emerald_ore", new BlockScoreConfig("block.minecraft.emerald_ore", "Emerald Ore", 40f));
-        defaultBlocks.put("block.minecraft.deepslate_emerald_ore", new BlockScoreConfig("block.minecraft.deepslate_emerald_ore", "Deepslate Emerald Ore", 60f));
-        defaultBlocks.put("block.minecraft.diamond_ore", new BlockScoreConfig("block.minecraft.diamond_ore", "Diamond Ore", 40f));
-        defaultBlocks.put("block.minecraft.deepslate_diamond_ore", new BlockScoreConfig("block.minecraft.deepslate_diamond_ore", "Deepslate Diamond Ore", 60f));
+        defaultBlocks.put("block.minecraft.redstone_ore", new BlockScoreConfig("block.minecraft.redstone_ore", "Redstone Ore", 5f));
+        defaultBlocks.put("block.minecraft.deepslate_redstone_ore", new BlockScoreConfig("block.minecraft.deepslate_redstone_ore", "Deepslate Redstone Ore", 6f));
+        defaultBlocks.put("block.minecraft.lapis_ore", new BlockScoreConfig("block.minecraft.lapis_ore", "Lapis Ore", 7f));
+        defaultBlocks.put("block.minecraft.deepslate_lapis_ore", new BlockScoreConfig("block.minecraft.deepslate_lapis_ore", "Deepslate Lapis Ore", 8f));
+        defaultBlocks.put("block.minecraft.gold_ore", new BlockScoreConfig("block.minecraft.gold_ore", "Gold Ore", 9f));
+        defaultBlocks.put("block.minecraft.deepslate_gold_ore", new BlockScoreConfig("block.minecraft.deepslate_gold_ore", "Deepslate Gold Ore", 10f));
+        defaultBlocks.put("block.minecraft.emerald_ore", new BlockScoreConfig("block.minecraft.emerald_ore", "Emerald Ore", 10f));
+        defaultBlocks.put("block.minecraft.deepslate_emerald_ore", new BlockScoreConfig("block.minecraft.deepslate_emerald_ore", "Deepslate Emerald Ore", 12f));
+        defaultBlocks.put("block.minecraft.diamond_ore", new BlockScoreConfig("block.minecraft.diamond_ore", "Diamond Ore", 10f));
+        defaultBlocks.put("block.minecraft.deepslate_diamond_ore", new BlockScoreConfig("block.minecraft.deepslate_diamond_ore", "Deepslate Diamond Ore", 12f));
     }
 
     public MinetifaceConfig() {
