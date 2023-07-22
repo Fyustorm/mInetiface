@@ -4,7 +4,6 @@
   "package": "fr.fyustorm.minetiface.mixin",
   "compatibilityLevel": "JAVA_17",
   "mixins": [
-    "LivingEntityMixins"
   ],
   "client": [
     "ClientPlayerEntityMixins",
