@@ -3,8 +3,7 @@
 
 ## Score system
 There are 4 independent scoring systems, one for each of the following categories : **Attack**, **Mining**, **Experience**, **Masochist**.
-You are accumulating points for a category each time you are doing an action from this category. You are keeping your points for this cagetory for a configurable time before starting to lose your points for this category over time.
-
+You accumulate points for a category each time you do an action from that category. You keep your points for the cagetories for a configurable time before starting to lose your points over time.
 
 The intensity is then calculated by taking the highest score from the 4 categories.
 
