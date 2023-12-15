@@ -99,6 +99,16 @@ Changes to the file are automatically applied. You don't need to reload your gam
       <a href="https://cdn.modrinth.com/data/mOgUt4GM/versions/RTFDnTKf/modmenu-7.0.1.jar">Mod Menu JAR</a><br>
       <a href="https://github.com/Fyustorm/mInetiface/releases/download/v1.20.1-1.1.0/minetiface-1.1.0-1.20.1.jar">mInetiface JAR</a>
     </details>
+    <details>
+     <summary>Minecraft 1.20.2</summary>
+      <a href="https://www.curseforge.com/minecraft/mc-mods/fabric-api/download/4905460">Fabric API JAR</a><br>
+      <a href="https://github.com/Fyustorm/mInetiface/releases/download/v1.20.2%2B_2.1.0/minetiface-fabric_1.20.4-2.1.0.jar">mInetiface JAR</a>
+    </details>
+    <details>
+     <summary>Minecraft 1.20.4</summary>
+      <a href="https://www.curseforge.com/minecraft/mc-mods/fabric-api/download/4940245">Fabric API JAR</a><br>
+      <a href="https://github.com/Fyustorm/mInetiface/releases/download/v1.20.2%2B_2.1.0/minetiface-fabric_1.20.4-2.1.0.jar">mInetiface JAR</a>
+    </details>
 
 1. Download and install [Minecraft Launcher](https://www.minecraft.net/en-us/download) or any launcher you want
 2. Download Fabric [https://fabricmc.net/use/installer/](https://fabricmc.net/use/installer/)
@@ -137,3 +147,6 @@ If you need another version support you can open an [issue](https://github.com/F
 This project is based on [minegasm](https://minegasm.therainbowville.com) and [Minegasm-fabric](https://github.com/vinceh121/Minegasm-fabric)
 
 Special thanks to [BlackSphereFollower](https://github.com/blackspherefollower) for technical support :)
+
+## Developers
+The main branch is only use for the README. The source code is not up to date on the main branch.
