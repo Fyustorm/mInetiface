@@ -81,7 +81,7 @@ public class ClientPlayerInteractionManagerMixins {
                 LOGGER.debug("Attribute = {}", attribute.getTranslationKey());
                 for (EntityAttributeModifier modifier : modifiers) {
                     value = modifier.getValue();
-                    LOGGER.debug("-- Modifier {} Value {}", modifier.getName(), modifier.getValue());
+//                    LOGGER.debug("-- Modifier {} Value {}", modifier.getName(), modifier.getValue());
                     break;
 
                 }
