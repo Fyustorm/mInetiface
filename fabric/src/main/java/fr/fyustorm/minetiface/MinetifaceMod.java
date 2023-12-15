@@ -32,17 +32,21 @@ public class MinetifaceMod implements ModInitializer {
         MinetifaceConfig.loadConfig(FabricLoader.getInstance().getConfigDir());
 
         ClientCommandRegistrationCallback.EVENT.register((dispatcher, registryAccess) -> {
-            dispatcher.register(ClientCommandManager.literal("minetiface-connect").executes(o -> {
-                commandConnect(o);
-                return Command.SINGLE_SUCCESS;
-            }));
+            dispatcher.register(ClientCommandManager
+                    .literal("minetiface-connect")
+                    .executes(o -> {
+                        commandConnect(o);
+                        return Command.SINGLE_SUCCESS;
+                    }));
         });
 
         ClientCommandRegistrationCallback.EVENT.register((dispatcher, registryAccess) -> {
-            dispatcher.register(ClientCommandManager.literal("minetiface-disconnect").executes(o -> {
-                commandDisconnect(o);
-                return Command.SINGLE_SUCCESS;
-            }));
+            dispatcher.register(ClientCommandManager
+                    .literal("minetiface-disconnect")
+                    .executes(o -> {
+                        commandDisconnect(o);
+                        return Command.SINGLE_SUCCESS;
+                    }));
         });
     }
 
@@ -59,7 +63,7 @@ public class MinetifaceMod implements ModInitializer {
             commandScan(context);
         } catch (URISyntaxException e) {
             throw new SimpleCommandExceptionType(
-					Text.translatable("commands.connect.invalid_address", MinetifaceConfig.INSTANCE.serverUrl))
+                    Text.translatable("commands.connect.invalid_address", MinetifaceConfig.INSTANCE.serverUrl))
                     .create();
         } catch (Exception e) {
             throw new SimpleCommandExceptionType(Text.translatable("commands.connect.error")).create();
@@ -69,7 +73,7 @@ public class MinetifaceMod implements ModInitializer {
     private void commandDisconnect(CommandContext<FabricClientCommandSource> context) {
         LOGGER.info("Disconnect command");
         ToyController.instance().disconnectServer();
-		context.getSource().sendFeedback(Text.translatable("commands.disconnected"));
+        context.getSource().sendFeedback(Text.translatable("commands.disconnected"));
     }
 
     private void commandScan(CommandContext<FabricClientCommandSource> context) throws CommandSyntaxException {
