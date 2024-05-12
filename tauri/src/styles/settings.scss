@@ -1,0 +1,13 @@
+/**
+ * src/styles/settings.scss
+ *
+ * Configures SASS variables and Vuetify overwrites
+ */
+
+// https://vuetifyjs.com/features/sass-variables/`
+@forward 'vuetify/settings' with (
+  $color-pack: false
+);
+
+@import "form.scss";
+@import "transitions.scss";
