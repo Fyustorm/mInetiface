@@ -8,9 +8,11 @@ You accumulate points for a category each time you do an action from that catego
 The intensity is then calculated by taking the highest score from the 4 categories.
 
 ## Config
-Ingame config has been discarded to make it easy to maintain multiple versions of the mod for **Fabric** and **Forge**.
+The old in-game configuration for the mInetiface mod has been replaced by the [mInetiface-config editor](https://github.com/Fyustorm/mInetiface-config). Please use the mInetiface-config application to manage all your mod settings.
 
-You can download the [config editor](https://github.com/Fyustorm/mInetiface-config/releases/latest) or edit the configuration manually.
+![mInetiface config editor screenshot](https://github.com/Fyustorm/mInetiface-config/blob/master/doc/main.png)
+
+If you don't want to use config editor you can edit the configuration manually.
 
 Config file location :
 _<minecraft_folder>_**/config/minetiface.config**
