@@ -20,6 +20,6 @@ displayTest="IGNORE_ALL_VERSION"
 [[dependencies.minetiface]]
     modId="minecraft"
     mandatory=true
-    versionRange="[1.19,1.20)"
+    versionRange="[1.20,)"
     ordering="NONE"
     side="CLIENT"
