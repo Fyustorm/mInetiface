@@ -1,5 +1,13 @@
 package fr.fyustorm.minetiface.common;
 
+import java.net.URISyntaxException;
+import java.util.List;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.mojang.brigadier.Command;
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.LiteralMessage;
@@ -7,6 +15,7 @@ import com.mojang.brigadier.builder.LiteralArgumentBuilder;
 import com.mojang.brigadier.context.CommandContext;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import com.mojang.brigadier.exceptions.SimpleCommandExceptionType;
+
 import fr.fyustorm.minetiface.MinetifaceMod;
 import fr.fyustorm.minetiface.commons.config.MinetifaceConfig;
 import fr.fyustorm.minetiface.commons.intiface.ToyController;
@@ -17,13 +26,6 @@ import net.minecraft.commands.Commands;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.network.chat.contents.TranslatableContents;
 import net.minecraft.world.entity.Entity;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import java.net.URISyntaxException;
-import java.util.List;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 
 
 public class MinetifaceCommand {
@@ -101,14 +103,14 @@ public class MinetifaceCommand {
 
                 String devicesStr = ToyController.instance().getDevicesString();
 
-                TranslatableContents content = new TranslatableContents("commands.connect.devices", devices.size(), devicesStr);
+                TranslatableContents content = new TranslatableContents("commands.connect.devices", "Devices", new Object[] { devices.size(), devicesStr});
                 sendMessage(context, content);
 
                 sendMessage(context, "commands.connect.add_more");
             } catch (Exception e) {
                 LOGGER.error("Error while scanning devices", e);
                 try {
-                    TranslatableContents content = new TranslatableContents("commands.connect.scan_failed", e.getMessage());
+                    TranslatableContents content = new TranslatableContents("commands.connect.scan_failed", "Failed", new Object[] {e.getMessage()});
                     sendMessage(context, content);
                 } catch (CommandSyntaxException ex) {
                     LOGGER.error("Error while sending feedback error", e);
@@ -124,11 +126,12 @@ public class MinetifaceCommand {
         }
 
         MutableComponent component = content.resolve(commandContext.getSource(), entity, 1);
-        commandContext.getSource().sendSuccess(component, false);
+
+        commandContext.getSource().sendSuccess(() -> component, false);
     }
 
     private static void sendMessage(CommandContext<CommandSourceStack> commandContext, String translationKey) throws CommandSyntaxException {
-        TranslatableContents content = new TranslatableContents(translationKey);
+        TranslatableContents content = new TranslatableContents(translationKey, translationKey, new Object[] {});
         sendMessage(commandContext, content);
     }
 }

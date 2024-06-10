@@ -22,7 +22,7 @@ public class MiningPointsCounter extends AbstractPointsCounter {
 		addSkipDownTick(value / 10 * MinetifaceConfig.INSTANCE.mineDurationMultiplier);
 		addInstantPoints(value / 25 * MinetifaceConfig.INSTANCE.mineInstantPointsMultiplier);
 		addPoints(value / 2500 * MinetifaceConfig.INSTANCE.minePointsMultiplier);
-		LOGGER.info("Points {} Feedback {} Skip {}", getPoints(), getInstantPoints(), getSkipDownTicks());
+		LOGGER.debug("Points {} Feedback {} Skip {}", getPoints(), getInstantPoints(), getSkipDownTicks());
 	}
 
 	public void onBreak(String blockId) {
@@ -45,7 +45,7 @@ public class MiningPointsCounter extends AbstractPointsCounter {
 					.getScore();
 		}
 
-		LOGGER.info("Value {}", blockValue);
+		LOGGER.debug("Value {}", blockValue);
 
 		if (blockValue == null) {
 			blockValue = MinetifaceConfig.INSTANCE.defaultBlockScore;

@@ -160,6 +160,7 @@ public class MinetifaceConfig {
     /**
      * We are watching config file for any extern modification
      */
+    @SuppressWarnings("unchecked")
     private static void watchConfig(Path configFolder) {
 
         try (WatchService watcher = FileSystems.getDefault().newWatchService()) {

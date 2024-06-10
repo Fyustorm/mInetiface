@@ -107,7 +107,7 @@ public class ToyController {
 	private double currentPosition = 1;
 	private long lastLinearCommandTimestamp = 0;
 	private long lastLinearCommandDuration = 0;
-	private double lastLinearPosition = 1;
+	// private double lastLinearPosition = 1;
 
 	// public void setLinearLevel(double level) {
 

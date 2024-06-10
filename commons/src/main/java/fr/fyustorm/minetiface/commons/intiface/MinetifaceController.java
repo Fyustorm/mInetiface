@@ -133,7 +133,7 @@ public class MinetifaceController {
 	}
 
 	public void onHarvest(float destroySpeed, String blockId) {
-		LOGGER.info("Block harvest {} Speed {}", blockId, destroySpeed);
+		// LOGGER.debug("Block harvest {} Speed {}", blockId, destroySpeed);
 		miningPointsCounter.onHarvest(destroySpeed, blockId);
 	}
 
