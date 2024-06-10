@@ -78,42 +78,12 @@ Changes to the file are automatically applied. You don't need to reload your gam
 3. One or multiple supported device(s) : [IoST Index – Vibrators with Buttplug.io Support](https://iostindex.com/?filter0ButtplugSupport=4&filter1Features=OutputsVibrators)
 
 ## How to install the mod
-<details>
-    <summary>Fabric versions</summary>
-    <details>
-     <summary>Minecraft 1.18.2</summary>
-      <a href="https://mediafilez.forgecdn.net/files/4438/686/fabric-api-0.76.0%2B1.18.2.jar">Fabric API JAR</a><br>
-      <a href="https://github.com/Fyustorm/mInetiface/releases/download/v1.18.2-2.0.0/minetiface-fabric_1.18.2-2.0.0.jar">mInetiface JAR</a>
-    </details>
-    <details>
-     <summary>Minecraft 1.19.2</summary>
-      <a href="https://mediafilez.forgecdn.net/files/3936/24/fabric-api-0.60.0%2B1.19.2.jar">Fabric API JAR</a><br>
-      <a href="https://cdn.modrinth.com/data/mOgUt4GM/versions/V4hnfgRO/modmenu-4.1.2.jar">Mod Menu JAR</a><br>
-      <a href="https://github.com/Fyustorm/mInetiface/releases/download/v1.19.2-1.1.0/minetiface-1.1.0-1.19.2.jar">mInetiface JAR</a>
-    </details>
-    <details>
-     <summary>Minecraft 1.19.4</summary>
-      <a href="https://mediafilez.forgecdn.net/files/4474/468/fabric-api-0.77.0%2B1.19.4.jar">Fabric API JAR</a><br>
-      <a href="https://cdn.modrinth.com/data/mOgUt4GM/versions/CtMNOUcV/modmenu-6.2.3.jar">Mod Menu JAR</a><br>
-      <a href="https://github.com/Fyustorm/mInetiface/releases/download/v1.19.4-1.0.0/minetiface-1.1.0-1.19.4.jar">mInetiface JAR</a>
-    </details>
-    <details>
-     <summary>Minecraft 1.20.1</summary>
-      <a href="https://mediafilez.forgecdn.net/files/4584/441/fabric-api-0.83.1%2B1.20.1.jar">Fabric API JAR</a><br>
-      <a href="https://cdn.modrinth.com/data/mOgUt4GM/versions/RTFDnTKf/modmenu-7.0.1.jar">Mod Menu JAR</a><br>
-      <a href="https://github.com/Fyustorm/mInetiface/releases/download/v1.20.1-1.1.0/minetiface-1.1.0-1.20.1.jar">mInetiface JAR</a>
-    </details>
-    <details>
-     <summary>Minecraft 1.20.2</summary>
-      <a href="https://www.curseforge.com/minecraft/mc-mods/fabric-api/download/4905460">Fabric API JAR</a><br>
-      <a href="https://github.com/Fyustorm/mInetiface/releases/download/v1.20.2%2B_2.1.0/minetiface-fabric_1.20.4-2.1.0.jar">mInetiface JAR</a>
-    </details>
-    <details>
-     <summary>Minecraft 1.20.4</summary>
-      <a href="https://www.curseforge.com/minecraft/mc-mods/fabric-api/download/4940245">Fabric API JAR</a><br>
-      <a href="https://github.com/Fyustorm/mInetiface/releases/download/v1.20.2%2B_2.1.0/minetiface-fabric_1.20.4-2.1.0.jar">mInetiface JAR</a>
-    </details>
+All versions can be downloaded from the [mInetiface website](https://minetiface.fyustorm.ovh/releases) or directly from the GitHub releases page.
+If you need another version support you can open an [issue](https://github.com/Fyustorm/mInetiface/issues/new)
 
+If you don't know what are **Forge** and **Fabric** and you only want to use the **mInetiface** mod you can follow the Fabric instructions below.
+
+### Fabric
 1. Download and install [Minecraft Launcher](https://www.minecraft.net/en-us/download) or any launcher you want
 2. Download Fabric [https://fabricmc.net/use/installer/](https://fabricmc.net/use/installer/)
    1. Run the installer
@@ -121,24 +91,11 @@ Changes to the file are automatically applied. You don't need to reload your gam
       2. Run the Minecraft Launcher. Select the new profile named **fabric-loader-xxx**
          1. Select the **Installations** tab and click the folder icon next to the profile **fabric-loader-xx**
          2. Create **mods** folder if it doesn't exists. Example : **C:\\Users\\<username>\\AppData\\Roaming\\.minecraft\\mods**
-3. Next and final step is to download all **JAR** files listed above for your Minecraft version and put them into the **mods** folder
-</details>
+3. [Download](https://www.curseforge.com/minecraft/mc-mods/fabric-api/files/all?page=1&pageSize=20&gameVersionTypeId=4&showAlphaFiles=hide) the fabric-api **JAR** for your Minecraft version and put it into the **mods** folder
+5. [Download](https://minetiface.fyustorm.ovh/releases) the mInetiface **JAR** for your Minecraft version and put it into the **mods** folder
 
-<details>
-    <summary>Forge versions</summary>
-    <details>
-     <summary>Minecraft 1.18.2</summary>
-      <a href="https://github.com/Fyustorm/mInetiface/releases/download/v1.18.2-2.0.0/minetiface-forge_1.18.2-2.0.0.jar">mInetiface JAR</a>
-    </details>
-    <details>
-     <summary>Minecraft 1.19.2</summary>
-      <a href="https://github.com/Fyustorm/mInetiface/releases/download/v1.19.2-2.0.0/minetiface-forge_1.19.2-2.0.0.jar">mInetiface JAR</a>
-    </details>
-
+### Forge
 1. Download the **JAR** file for your Minecraft version and put it into your **mods** folder
-</details>
-
-If you need another version support you can open an [issue](https://github.com/Fyustorm/mInetiface/issues/new)
 
 ## How to use
 1. Make sure you have installed the mod and Intiface Central
