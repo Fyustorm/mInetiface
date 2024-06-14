@@ -30,3 +30,5 @@ run
 
 # Files from Forge MDK
 forge*changelog.txt
+.fabric
+crash-reports
