@@ -71,7 +71,7 @@ public class ClientPlayerInteractionManagerMixins {
             AttributeModifiersComponent attributes = item.get(DataComponentTypes.ATTRIBUTE_MODIFIERS);
             if (attributes != null) {
                 // We are searching the item damage attribute
-                Identifier damagIdentifier = new Identifier("minecraft:generic.attack_damage");
+                Identifier damagIdentifier = Identifier.of("minecraft", "generic.attack_damage");
                 for (AttributeModifiersComponent.Entry entry : attributes.modifiers()) {
                     RegistryKey<EntityAttribute> registryKey = entry.attribute().getKey().orElse(null);
                     Identifier identifier = registryKey.getValue();
