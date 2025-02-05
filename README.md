@@ -1,3 +1,6 @@
+> ⚠️ **Warning**
+> This mod is no longer maintained. If you want to take over the project, feel free to contact me.
+
 # mInetiface
 **mInetiface** is a Minecraft mod for **Fabric** and **Forge** that allows to connect to an **Intiface Central** server and thus control a connected sextoy
 
